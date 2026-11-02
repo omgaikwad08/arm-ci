@@ -4,7 +4,7 @@ Angles are in degrees. Limits come from the mechanical spec."""
 
 JOINT_LIMITS_DEG = {
     "base": (-180, 180),
-    "shoulder": (-90, 90),
+    "shoulder": (-90, 95),
     "elbow": (-150, 150),
     "wrist": (-180, 180),
 }
