@@ -9,10 +9,10 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
-      uses: actions/checkout@v7
-      uses: actions/setup-python@v7
-      with:
-        python-version: "3.12"
-      run: pip install -r requirements-dev.txt
-      run: pytest -v -m "not endurance"
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt
+      - run: pytest -v -m "not endurance"
 
