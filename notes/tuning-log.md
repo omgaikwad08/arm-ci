@@ -5,3 +5,4 @@
 - Tuning session 5: reach and cycle-time measurements recorded
 - Tuning session 6: reach and cycle-time measurements recorded
 - Tuning session 7: reach and cycle-time measurements recorded
+- Tuning session 8: reach and cycle-time measurements recorded
