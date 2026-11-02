@@ -1,4 +1,6 @@
-"""Joint limit safety checks for the arm. Angles are in degrees."""
+"""Joint limit safety checks for the arm.
+
+Angles are in degrees. Limits come from the mechanical spec."""
 
 JOINT_LIMITS_DEG = {
     "base": (-180, 180),
