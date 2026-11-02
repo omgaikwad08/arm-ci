@@ -22,10 +22,10 @@ jobs:
          {"version": "${GITHUB_REF_NAME}", "commit": "${GITHUB_SHA}"}
          EOF
          tar czf "dist/arm-${GITHUB_REF_NAME}.tar.gz" joint_limits.py
-build_info.json
+         build_info.json
          cd dist && sha256sum ./*.tar.gz > SHA256SUMS 
       - name: Publish Github Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create "$GITHUB_REF_NAME" dist/* --title
-"$GITHUB_REF_NAME" --generate-notes
+        "$GITHUB_REF_NAME" --generate-notes
