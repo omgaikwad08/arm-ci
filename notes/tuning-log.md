@@ -7,3 +7,4 @@
 - Tuning session 7: reach and cycle-time measurements recorded
 - Tuning session 8: reach and cycle-time measurements recorded
 - Tuning session 9: reach and cycle-time measurements recorded
+- Tuning session 10: reach and cycle-time measurements recorded
