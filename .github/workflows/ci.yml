@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
       - run: pip install -r requirements-dev.txt
       - run: pytest -v -m "not endurance"
   test:
@@ -35,7 +37,18 @@ jobs:
     needs: test
     runs-on: ubuntu-24.04
     steps:
-     - run: echo "package placeholder"
+     - uses: actions/checkout@v7
+     - name: Build package wwith build info
+       run: |mkdir -p dist
+          cat > build_info.json <<EOF
+          {"commit": "${GITHUB_SHA}", "ref": "${GITHUB_REF_NAME}", "run_id": "${GITHUB_RUN_ID}"}
+          EOF
+          tar czf "dist/arm-${GITHUB_SHA::7}.tar.gz" joint_limits.py build_info.json
+          cd dist && sha256sum ./*.tar.gz > SHA256SUMS
+     - uses: actions/upload-artifact@v7
+       with:
+         name: arm-${{ github.sha }}
+         path: dist/ 
 
   all-green:
     if: always()
