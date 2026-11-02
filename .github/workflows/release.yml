@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt
+      - run: pytest -v
+      - name: Package
+        run: |
+         mkdir -p dist
+         cat > build_info.json <<EOF
+         {"version": "${GITHUB_REF_NAME}", "commit": "${GITHUB_SHA}"}
+         EOF
+         tar czf "dist/arm-${GITHUB_REF_NAME}.tar.gz" joint_limits.py
+build_info.json
+         cd dist && sha256sum ./*.tar.gz > SHA256SUMS 
+      - name: Publish Github Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --title
+"$GITHUB_REF_NAME" --generate-notes
