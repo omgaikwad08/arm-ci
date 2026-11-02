@@ -24,18 +24,18 @@ jobs:
       os: [ubuntu-24.04, windows-latest]
       python-version: ["3.11", "3.12"]
     steps:
-      -uses: actions/checkout@v7
-      -uses: actions/python@v7
-       with: 
-        python-version: ${{matrix.python-version}}
-      -run: pip install -r requirements-dev.txt
-      -run: pytest -v -m "not endurance"
+      - uses: actions/checkout@v7
+      - uses: actions/python@v7
+        with: 
+          python-version: ${{matrix.python-version}}
+      - run: pip install -r requirements-dev.txt
+      - run: pytest -v -m "not endurance"
 
   package:
     needs: test
     runs-on: ubuntu-24.04
     steps:
-     -run: echo "package placeholder"
+     - run: echo "package placeholder"
 
   all-green:
     if: always()
