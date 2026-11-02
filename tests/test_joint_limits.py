@@ -6,7 +6,7 @@ from joint_limits import JOINT_LIMITS_DEG, clamp, within_limits
 
 
 def test_base_inside_limits():
-    assert within_limits("base", 999)
+    assert within_limits("base", 180)
 
 
 def test_base_outside_limits():
